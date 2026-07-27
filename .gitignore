@@ -1,0 +1,6 @@
+node_modules/
+temporary screenshots/
+.env
+.env.*
+*.local
+voice briefs/

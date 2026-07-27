@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta · Sistema de Asistencia de Ventas · Madeiras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --carbon:        #1a1a1a;
+      --carbon-lift:   #242424;
+      --copper:        #D4763B;
+      --copper-dim:    #8a4520;
+      --copper-light:  #f5dcc8;
+      --copper-tint:   #1e1410;
+      --bone:          #faf8f5;
+      --beige:         #f0ebe3;
+      --text-dark:     #1a1a1a;
+      --text-muted:    #6b5e52;
+      --text-faint:    #9e9087;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bone);
+      color: var(--text-dark);
+      line-height: 1.6;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─────────────────────────────
+       EYEBROW
+    ───────────────────────────── */
+    .eyebrow {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 0.4rem;
+    }
+
+    /* ─────────────────────────────
+       HEADER
+    ───────────────────────────── */
+    .header {
+      background: var(--carbon);
+      padding: 3rem 4rem 2.75rem;
+      position: relative;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--copper), transparent 70%);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .header-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      background: url('assets/Madeiras.png') 50% 5% / 1000% auto no-repeat;
+    }
+
+    .header-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.75rem;
+      letter-spacing: 0.12em;
+      color: #fff;
+    }
+
+    .header-date {
+      margin-left: auto;
+      font-size: 11px;
+      color: #555;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+    }
+
+    .header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.75rem, 5vw, 4.25rem);
+      line-height: 0.95;
+      color: #fff;
+      letter-spacing: 0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .header-tagline {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--copper);
+      max-width: 520px;
+      line-height: 1.45;
+    }
+
+    /* ─────────────────────────────
+       SECTIONS
+    ───────────────────────────── */
+    .section {
+      padding: 3.5rem 4rem;
+    }
+
+    .section--beige  { background: var(--beige); }
+    .section--dark   { background: var(--carbon); }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.1rem;
+      letter-spacing: 0.03em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .section--dark .section-title { color: #fff; }
+
+    .section-intro {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      line-height: 1.55;
+      margin-bottom: 2.25rem;
+    }
+
+    .section--dark .section-intro { color: #777; }
+
+    /* ─────────────────────────────
+       SIGNATURE — ANTES vs DESPUÉS
+    ───────────────────────────── */
+    .split-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow:
+        0 4px 6px -1px rgba(0,0,0,0.15),
+        0 20px 48px -8px rgba(0,0,0,0.25);
+    }
+
+    .split-before {
+      background: #272727;
+      padding: 2rem 2.25rem 2.25rem;
+    }
+
+    .split-after {
+      background: var(--copper-tint);
+      padding: 2rem 2.25rem 2.25rem;
+      border-left: 2px solid #2d1e0f;
+      position: relative;
+    }
+
+    .split-after::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -1px; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--copper), transparent);
+    }
+
+    .split-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.25rem;
+    }
+
+    .split-before .split-label { color: #484848; }
+    .split-after  .split-label { color: var(--copper); }
+
+    .split-steps { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+
+    .split-steps li {
+      font-size: 0.855rem;
+      line-height: 1.45;
+      padding-left: 1.35rem;
+      position: relative;
+    }
+
+    .split-before .split-steps li { color: #6a6a6a; }
+    .split-before .split-steps li::before { content: '→'; position: absolute; left: 0; color: #555; }
+
+    .split-after  .split-steps li { color: #c4b8ad; }
+    .split-after  .split-steps li::before { content: '✓'; position: absolute; left: 0; color: var(--copper); font-weight: 700; }
+
+    .split-result {
+      margin-top: 1.5rem;
+      padding-top: 1.1rem;
+      font-size: 0.83rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .split-before .split-result { border-top: 1px solid #3a3a3a; color: #777; }
+    .split-after  .split-result { border-top: 1px solid #2a1a0e; color: var(--copper); }
+
+    /* ─────────────────────────────
+       PHASE CARDS (Módulo 1)
+    ───────────────────────────── */
+    .phases {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .phase-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.75rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+    }
+
+    .phase-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .phase-card--active::before { background: var(--copper); }
+    .phase-card--next::before   { background: #e0d8d0; }
+
+    .phase-badge {
+      display: inline-block;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 0.7rem;
+    }
+
+    .phase-badge--active { background: var(--copper-light); color: var(--copper-dim); }
+    .phase-badge--next   { background: #f0ede9; color: #999; }
+
+    .phase-card h3 {
+      font-size: 0.975rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: var(--text-dark);
+    }
+
+    .phase-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+
+    .phase-card ul li {
+      font-size: 0.855rem;
+      color: var(--text-muted);
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.4;
+    }
+
+    .phase-card--active ul li::before { content: '·'; position: absolute; left: 0; color: var(--copper); font-size: 1.1rem; line-height: 1; top: 2px; }
+    .phase-card--next   ul li::before { content: '·'; position: absolute; left: 0; color: #ccc; font-size: 1.1rem; line-height: 1; top: 2px; }
+
+    .phase-note {
+      margin-top: 1rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid #f0ede9;
+      font-size: 0.795rem;
+      color: var(--text-faint);
+      font-style: italic;
+      line-height: 1.45;
+    }
+
+    /* ─────────────────────────────
+       OPTION CARDS (Módulo 2)
+    ───────────────────────────── */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .option-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+    }
+
+    .option-card-head {
+      padding: 1.5rem 1.75rem 1.25rem;
+      border-bottom: 1px solid #f0ede9;
+    }
+
+    .option-badge {
+      display: inline-block;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 0.6rem;
+    }
+
+    .option-badge--a { background: var(--beige); color: var(--text-muted); }
+    .option-badge--b { background: var(--copper-light); color: var(--copper-dim); }
+
+    .option-card h3 {
+      font-size: 0.975rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .option-card .desc {
+      font-size: 0.845rem;
+      color: var(--text-muted);
+      line-height: 1.48;
+    }
+
+    .option-card-body { padding: 1.25rem 1.75rem 1.5rem; }
+
+    .pc-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-top: 0.85rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .pc-label:first-child { margin-top: 0; }
+
+    .pros, .cons { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+
+    .pros li, .cons li {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.4;
+    }
+
+    .pros li::before { content: '+'; position: absolute; left: 0; color: #4e9a6b; font-weight: 700; }
+    .cons li::before { content: '−'; position: absolute; left: 0; color: #b86a50; font-weight: 700; }
+
+    /* Coexist banner */
+    .coexist {
+      background: var(--carbon);
+      border-radius: 10px;
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .coexist-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+      opacity: 0.8;
+    }
+
+    .coexist h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--copper);
+      margin-bottom: 0.25rem;
+    }
+
+    .coexist p {
+      font-size: 0.835rem;
+      color: #888;
+      line-height: 1.45;
+    }
+
+    /* ─────────────────────────────
+       ROADMAP
+    ───────────────────────────── */
+    .roadmap {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      position: relative;
+      gap: 0;
+    }
+
+    .roadmap::before {
+      content: '';
+      position: absolute;
+      top: 1.35rem;
+      left: calc(100% / 6);
+      right: calc(100% / 6);
+      height: 2px;
+      background: linear-gradient(to right, var(--copper) 30%, #333 100%);
+      z-index: 0;
+    }
+
+    .rm-phase {
+      position: relative;
+      z-index: 1;
+      padding: 0 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .rm-dot {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+      margin-bottom: 1.1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .rm-dot--active {
+      background: var(--copper);
+      color: #fff;
+      box-shadow: 0 0 0 5px rgba(212,118,59,0.15), 0 4px 12px rgba(212,118,59,0.3);
+    }
+
+    .rm-dot--next {
+      background: transparent;
+      border: 2px solid var(--copper);
+      color: var(--copper);
+    }
+
+    .rm-dot--future {
+      background: transparent;
+      border: 2px solid #383838;
+      color: #444;
+    }
+
+    .rm-eyebrow {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .rm-phase:nth-child(1) .rm-eyebrow { color: var(--copper); }
+    .rm-phase:nth-child(2) .rm-eyebrow { color: #555; }
+    .rm-phase:nth-child(3) .rm-eyebrow { color: #444; }
+
+    .rm-phase h3 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .rm-phase:nth-child(1) h3 { color: #e8e8e8; }
+    .rm-phase:nth-child(2) h3 { color: #777; }
+    .rm-phase:nth-child(3) h3 { color: #555; }
+
+    .rm-phase ul { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+
+    .rm-phase ul li { font-size: 0.8rem; line-height: 1.4; }
+    .rm-phase:nth-child(1) ul li { color: #aaa; }
+    .rm-phase:nth-child(2) ul li { color: #555; }
+    .rm-phase:nth-child(3) ul li { color: #444; }
+
+    /* ─────────────────────────────
+       PENDING QUESTIONS
+    ───────────────────────────── */
+    .pending-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+
+    .pending-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      padding: 0.9rem 1.1rem;
+      background: #fff;
+      border-radius: 8px;
+      border-left: 3px solid var(--copper);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .pending-ring {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 2px solid var(--copper);
+      flex-shrink: 0;
+      margin-top: 2px;
+      opacity: 0.7;
+    }
+
+    /* ─────────────────────────────
+       FOOTER
+    ───────────────────────────── */
+    .footer {
+      background: var(--carbon);
+      padding: 1.75rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #222;
+    }
+
+    .footer-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      color: #3a3a3a;
+    }
+
+    .footer-meta {
+      font-size: 11px;
+      color: #444;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─────────────────────────────
+       DEMO SECTION — players
+    ───────────────────────────── */
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    .demo-note {
+      margin-top: 1.1rem;
+      font-size: 0.78rem;
+      color: #5c5c5c;
+      font-style: italic;
+    }
+
+    .dplayer {
+      background: #101010;
+      border: 1px solid #262626;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 48px -12px rgba(0,0,0,0.5);
+    }
+
+    .dp-top {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid #1f1f1f;
+    }
+
+    .dp-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.14em;
+      color: #e8e2db;
+    }
+
+    .dp-chip {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--copper);
+    }
+
+    .dp-chip::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--copper);
+      animation: dp-pulse 1.6s infinite;
+    }
+
+    @keyframes dp-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+    .dp-screen {
+      position: relative;
+      height: 430px;
+      background: #0b0b0b;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .dp-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+      background: rgba(8,8,8,0.62);
+      backdrop-filter: blur(3px);
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.45s ease, visibility 0.45s;
+    }
+
+    .dp-overlay.hidden { opacity: 0; visibility: hidden; }
+
+    .dp-overlay:focus-visible, .dp-btn:focus-visible { outline: 2px solid var(--copper); outline-offset: 2px; }
+
+    .dp-play-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--copper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 8px rgba(212,118,59,0.18), 0 8px 24px rgba(0,0,0,0.4);
+      transition: transform 0.25s;
+    }
+
+    .dp-overlay:hover .dp-play-btn { transform: scale(1.08); }
+
+    .dp-play-btn::before {
+      content: '';
+      border-style: solid;
+      border-width: 11px 0 11px 18px;
+      border-color: transparent transparent transparent #fff;
+      margin-left: 4px;
+    }
+
+    .dp-overlay span:last-child { font-size: 0.8rem; color: #cfc6bc; letter-spacing: 0.04em; }
+
+    .dp-caption {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      padding: 0.8rem 1rem 0.75rem;
+      border-top: 1px solid #1f1f1f;
+      min-height: 68px;
+      flex: 1;
+    }
+
+    .dp-step {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      color: var(--copper);
+      border: 1px solid rgba(212,118,59,0.4);
+      border-radius: 5px;
+      padding: 0.1rem 0.45rem;
+      letter-spacing: 0.08em;
+      flex-shrink: 0;
+      min-width: 2.6rem;
+      text-align: center;
+    }
+
+    .dp-caption-text { font-size: 0.845rem; color: #c4b8ad; line-height: 1.45; }
+
+    .dp-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.55rem 1rem 0.7rem;
+    }
+
+    .dp-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid #3a3a3a;
+      background: #181818;
+      color: #e8e2db;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      flex-shrink: 0;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .dp-btn:hover { border-color: var(--copper); color: var(--copper); }
+
+    .dp-progress { flex: 1; height: 3px; background: #242424; border-radius: 2px; overflow: hidden; }
+    .dp-progress-fill { height: 100%; width: 0%; background: linear-gradient(to right, var(--copper-dim), var(--copper)); }
+
+    .dp-time {
+      font-size: 10px;
+      color: #666;
+      letter-spacing: 0.08em;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    /* ─────────────────────────────
+       DEMO A — catálogo (tablet)
+    ───────────────────────────── */
+    .da-app {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      background: #f5f1ea;
+      font-size: 10.5px;
+    }
+
+    .da-top {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--carbon);
+      color: #fff;
+      padding: 0.45rem 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .da-top-brand { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.12em; font-size: 0.8rem; }
+    .da-top-sub { color: #888; font-size: 9px; }
+
+    .da-margin {
+      margin-left: auto;
+      background: rgba(212,118,59,0.16);
+      color: var(--copper);
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+
+    .da-body { flex: 1; display: flex; min-height: 0; }
+
+    .da-filters {
+      width: 132px;
+      flex-shrink: 0;
+      background: #fff;
+      border-right: 1px solid #e5ddd2;
+      padding: 0.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      overflow: hidden;
+    }
+
+    .da-flabel {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: #9e9087;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .da-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+
+    .da-chip {
+      border: 1px solid #ddd3c6;
+      border-radius: 20px;
+      padding: 2px 8px;
+      font-size: 9px;
+      color: var(--text-muted);
+      background: #fff;
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+    }
+
+    .da-chip.is-on { background: var(--copper); border-color: var(--copper); color: #fff; }
+
+    .da-swatches { display: flex; gap: 5px; }
+
+    .da-swatch {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .da-swatch.is-on { border-color: var(--copper); transform: scale(1.15); }
+
+    .da-slider { height: 4px; background: #e8e0d5; border-radius: 2px; position: relative; margin: 0.5rem 2px 0.1rem; }
+
+    .da-slider-fill {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 8%;
+      background: var(--copper);
+      border-radius: 2px;
+      transition: width 0.9s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .da-slider-thumb {
+      position: absolute;
+      top: 50%;
+      left: 8%;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid var(--copper);
+      transform: translate(-50%,-50%);
+      transition: left 0.9s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .da-app.price-set .da-slider-fill { width: 72%; }
+    .da-app.price-set .da-slider-thumb { left: 72%; }
+
+    .da-slider-val { font-size: 9px; color: var(--text-muted); margin-top: 0.35rem; font-weight: 600; }
+    .da-slider-val .v1 { display: none; }
+    .da-app.price-set .da-slider-val .v0 { display: none; }
+    .da-app.price-set .da-slider-val .v1 { display: inline; }
+
+    .da-provs { display: flex; flex-direction: column; gap: 3px; font-size: 9px; color: var(--text-muted); }
+    .da-provs span::before { content: '☑'; color: var(--copper); margin-right: 4px; }
+
+    .da-main { flex: 1; padding: 0.7rem 0.8rem; display: flex; flex-direction: column; min-width: 0; position: relative; }
+
+    .da-count { font-size: 9px; color: #9e9087; margin-bottom: 0.5rem; opacity: 0; transition: opacity 0.4s; }
+    .da-app.has-results .da-count { opacity: 1; }
+
+    .da-empty {
+      position: absolute;
+      inset: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: #b5a897;
+      font-size: 10px;
+      text-align: center;
+      transition: opacity 0.4s;
+    }
+
+    .da-empty svg { width: 52px; height: 32px; opacity: 0.4; }
+    .da-app.has-results .da-empty { opacity: 0; }
+
+    .da-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+    .da-card {
+      background: #fff;
+      border-radius: 7px;
+      overflow: hidden;
+      border: 1px solid #eee5d9;
+      opacity: 0;
+      transform: translateY(10px) scale(0.96);
+      transition: opacity 0.45s ease, transform 0.45s ease, box-shadow 0.3s;
+    }
+
+    .da-app.has-results .da-card { opacity: 1; transform: none; }
+    .da-card:nth-child(1) { transition-delay: 0.05s; }
+    .da-card:nth-child(2) { transition-delay: 0.15s; }
+    .da-card:nth-child(3) { transition-delay: 0.25s; }
+    .da-card:nth-child(4) { transition-delay: 0.35s; }
+    .da-card:nth-child(5) { transition-delay: 0.45s; }
+    .da-card:nth-child(6) { transition-delay: 0.55s; }
+
+    .da-card.in-quote { box-shadow: 0 0 0 2px var(--copper); transition-delay: 0s; }
+
+    .da-photo { height: 56px; background: #f0e9df; display: flex; align-items: center; justify-content: center; }
+    .da-photo svg { width: 78%; height: 82%; }
+
+    .da-card-b { padding: 5px 7px 7px; }
+    .da-name { font-size: 9.5px; font-weight: 600; color: var(--text-dark); line-height: 1.2; }
+    .da-prov { font-size: 7.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #9e9087; margin: 2px 0 3px; }
+    .da-row { display: flex; align-items: center; }
+    .da-price { font-size: 10.5px; font-weight: 700; color: var(--copper-dim); }
+    .da-stock { margin-left: auto; font-size: 7.5px; color: #4e9a6b; font-weight: 600; }
+    .da-stock--warn { color: #b8863d; }
+
+    .da-add {
+      margin-top: 5px;
+      border: 1px solid var(--copper);
+      color: var(--copper);
+      border-radius: 4px;
+      font-size: 8.5px;
+      font-weight: 700;
+      padding: 2.5px 0;
+      text-align: center;
+      letter-spacing: 0.06em;
+      background: #fff;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .da-card.in-quote .da-add { background: var(--copper); color: #fff; }
+
+    .da-quote {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 150px;
+      background: var(--carbon);
+      color: #fff;
+      padding: 0.8rem;
+      transform: translateX(105%);
+      transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+      display: flex;
+      flex-direction: column;
+      z-index: 5;
+    }
+
+    .da-app.quote-open .da-quote { transform: none; }
+
+    .da-q-title { font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--copper); margin-bottom: 0.6rem; }
+
+    .da-q-item { display: none; font-size: 9px; padding: 0.35rem 0; border-bottom: 1px solid #2c2c2c; }
+    .da-q-item.show { display: block; animation: da-fade 0.4s ease; }
+    .da-q-item b { display: block; color: #e8e2db; font-weight: 600; }
+    .da-q-item span { color: #8d8d8d; }
+
+    @keyframes da-fade { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: none; } }
+
+    .da-q-total { margin-top: auto; padding-top: 0.5rem; border-top: 1px solid #3a3a3a; font-size: 9px; color: #999; }
+    .da-q-total b { display: block; font-size: 13px; color: #fff; }
+
+    .da-q-btn {
+      margin-top: 0.55rem;
+      background: var(--copper);
+      color: #fff;
+      text-align: center;
+      border-radius: 5px;
+      padding: 5px 0;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .da-q-done {
+      position: absolute;
+      inset: 0;
+      background: var(--carbon);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s, visibility 0.4s;
+      text-align: center;
+      padding: 0 0.8rem;
+      z-index: 6;
+    }
+
+    .da-app.quote-done .da-q-done { opacity: 1; visibility: visible; }
+
+    .da-q-check {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid var(--copper);
+      color: var(--copper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .da-q-done b { font-size: 10px; color: #fff; }
+    .da-q-done span { font-size: 8.5px; color: #999; line-height: 1.4; }
+
+    .demo-cursor {
+      position: absolute;
+      z-index: 20;
+      width: 18px;
+      height: 18px;
+      margin: -9px 0 0 -9px;
+      border-radius: 50%;
+      background: rgba(212,118,59,0.9);
+      box-shadow: 0 0 0 3px rgba(212,118,59,0.3), 0 2px 8px rgba(0,0,0,0.35);
+      left: 55%;
+      top: 88%;
+      opacity: 0;
+      pointer-events: none;
+      transition: left 0.85s cubic-bezier(0.5,0,0.3,1), top 0.85s cubic-bezier(0.5,0,0.3,1), opacity 0.3s;
+    }
+
+    .demo-cursor.visible { opacity: 1; }
+    .da-app.quote-done .demo-cursor { opacity: 0; }
+
+    .demo-cursor.click::after {
+      content: '';
+      position: absolute;
+      inset: -7px;
+      border-radius: 50%;
+      border: 2px solid var(--copper);
+      animation: cur-click 0.5s ease-out;
+    }
+
+    @keyframes cur-click { from { transform: scale(0.4); opacity: 1; } to { transform: scale(1.5); opacity: 0; } }
+
+    /* ─────────────────────────────
+       DEMO B — WhatsApp (teléfono)
+    ───────────────────────────── */
+    .wa-stage {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 20%, #171310, #0b0b0b 70%);
+    }
+
+    .wa-phone {
+      width: 232px;
+      height: 404px;
+      background: #000;
+      border-radius: 26px;
+      padding: 7px;
+      box-shadow: 0 0 0 1px #2e2e2e, 0 18px 40px rgba(0,0,0,0.6);
+      display: flex;
+    }
+
+    .wa-screen {
+      flex: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: #ece5dd;
+    }
+
+    .wa-head {
+      background: #075e54;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 9px 7px;
+      flex-shrink: 0;
+    }
+
+    .wa-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--copper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .wa-head-name { font-size: 10.5px; font-weight: 600; line-height: 1.15; }
+    .wa-head-status { font-size: 8px; color: #b7dcd6; }
+
+    .wa-chat {
+      flex: 1;
+      padding: 8px 8px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 5px;
+      overflow: hidden;
+    }
+
+    .wa-date {
+      align-self: center;
+      background: #dcd3c8;
+      color: var(--text-muted);
+      font-size: 7.5px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-bottom: 2px;
+    }
+
+    .wa-msg {
+      max-width: 86%;
+      border-radius: 8px;
+      padding: 5px 7px;
+      font-size: 9.5px;
+      line-height: 1.35;
+      color: #222;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.08);
+      display: none;
+    }
+
+    .wa-msg.show { display: block; animation: wa-in 0.35s ease; }
+
+    @keyframes wa-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+    .wa-sent { align-self: flex-end; background: #dcf8c6; border-bottom-right-radius: 2px; }
+    .wa-recv { align-self: flex-start; background: #fff; border-bottom-left-radius: 2px; }
+
+    .wa-meta { display: block; text-align: right; font-size: 7px; color: #8a9a8d; margin-top: 2px; }
+    .wa-ticks { color: #53bdeb; }
+
+    .wa-voice { display: flex; align-items: center; gap: 6px; width: 150px; padding: 3px 0 2px; }
+
+    .wa-voice-play {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 5px 0 5px 8px;
+      border-color: transparent transparent transparent #7a8a7d;
+      flex-shrink: 0;
+    }
+
+    .wa-wave { display: flex; align-items: center; gap: 1.5px; height: 16px; flex: 1; }
+    .wa-wave i { width: 2px; background: #7a8a7d; border-radius: 1px; height: 30%; }
+    .wa-wave i:nth-child(odd) { height: 70%; }
+    .wa-wave i:nth-child(3n) { height: 45%; }
+    .wa-wave i:nth-child(4n) { height: 90%; }
+
+    .wa-msg.playing .wa-wave i { animation: wa-eq 0.7s infinite ease-in-out alternate; }
+    .wa-msg.playing .wa-wave i:nth-child(2n) { animation-delay: 0.15s; }
+    .wa-msg.playing .wa-wave i:nth-child(3n) { animation-delay: 0.3s; }
+    .wa-msg.playing .wa-voice-play { border-left-color: var(--copper); }
+
+    @keyframes wa-eq { from { transform: scaleY(0.5); } to { transform: scaleY(1.25); } }
+
+    .wa-vtime { font-size: 7.5px; color: #8a9a8d; flex-shrink: 0; }
+
+    .wa-trans { font-style: italic; color: #555; }
+    .wa-trans b { font-style: normal; color: #075e54; font-size: 8px; letter-spacing: 0.06em; display: block; margin-bottom: 1px; }
+
+    .wa-typing { padding: 7px 9px 5px; }
+    .wa-typing i {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #9aa5a0;
+      margin-right: 2px;
+      animation: wa-dot 1s infinite;
+    }
+    .wa-typing i:nth-child(2) { animation-delay: 0.18s; }
+    .wa-typing i:nth-child(3) { animation-delay: 0.36s; }
+
+    @keyframes wa-dot { 0%, 60%, 100% { transform: none; opacity: 0.5; } 30% { transform: translateY(-3px); opacity: 1; } }
+
+    .wa-prods { display: flex; flex-direction: column; gap: 5px; margin-top: 4px; }
+
+    .wa-prod {
+      display: flex;
+      gap: 6px;
+      background: #f7f4ef;
+      border: 1px solid #e7dfd3;
+      border-radius: 6px;
+      padding: 4px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .wa-msg.show .wa-prod { opacity: 1; transform: none; }
+    .wa-msg.show .wa-prod:nth-child(1) { transition-delay: 0.2s; }
+    .wa-msg.show .wa-prod:nth-child(2) { transition-delay: 0.55s; }
+    .wa-msg.show .wa-prod:nth-child(3) { transition-delay: 0.9s; }
+
+    .wa-prod-ph {
+      width: 34px;
+      height: 30px;
+      background: #efe8dd;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .wa-prod-ph svg { width: 86%; height: 80%; }
+
+    .wa-prod b { display: block; font-size: 8.5px; color: var(--text-dark); line-height: 1.15; }
+    .wa-prod-prov { font-size: 6.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #9e9087; }
+    .wa-prod-row { display: flex; gap: 5px; align-items: center; margin-top: 1px; }
+    .wa-prod-price { font-size: 9px; font-weight: 700; color: var(--copper-dim); }
+    .wa-prod-st { font-size: 6.5px; color: #4e9a6b; font-weight: 700; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .dp-chip::before, .wa-msg.playing .wa-wave i, .wa-typing i { animation: none; }
+      .da-card, .da-quote, .demo-cursor, .da-slider-fill, .da-slider-thumb, .wa-prod { transition: none; }
+      .wa-msg.show, .da-q-item.show { animation: none; }
+    }
+
+    @media (max-width: 1100px) {
+      .demo-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .dp-screen { height: 400px; }
+      .da-filters { width: 104px; padding: 0.55rem; }
+      .da-results { grid-template-columns: repeat(2, 1fr); }
+      .da-card:nth-child(n+5) { display: none; }
+      .da-quote { width: 130px; }
+    }
+
+    /* ─────────────────────────────
+       PRINT
+    ───────────────────────────── */
+    @media print {
+      @page { size: A4; margin: 14mm 18mm; }
+
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+      body { font-size: 13px; }
+
+      .header { padding: 2rem 2.5rem 2rem; }
+      .section { padding: 2rem 2.5rem; }
+      .footer  { padding: 1.25rem 2.5rem; }
+
+      .split-wrap, .phase-card, .option-card, .coexist, .pending-list li {
+        box-shadow: none !important;
+      }
+
+      .phase-card, .option-card { border: 1px solid #e8e3dc; }
+
+      .section--dark, .header, .footer { background: var(--carbon) !important; }
+      .split-before  { background: #272727 !important; }
+      .split-after   { background: var(--copper-tint) !important; }
+      .coexist       { background: var(--carbon) !important; }
+
+      .options-grid, .phases, .roadmap { page-break-inside: avoid; }
+
+      .demo-section { display: none !important; }
+    }
+
+    /* ─────────────────────────────
+       RESPONSIVE
+    ───────────────────────────── */
+    @media (max-width: 680px) {
+      .header  { padding: 2rem 1.5rem 1.75rem; }
+      .section { padding: 2.5rem 1.5rem; }
+      .footer  { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+
+      .split-wrap    { grid-template-columns: 1fr; }
+      .phases        { grid-template-columns: 1fr; }
+      .options-grid  { grid-template-columns: 1fr; }
+      .roadmap       { grid-template-columns: 1fr; gap: 2rem; }
+      .roadmap::before { display: none; }
+      .rm-phase      { align-items: flex-start; text-align: left; flex-direction: row; gap: 1rem; }
+      .rm-dot        { flex-shrink: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════
+       HEADER
+  ══════════════════════════ -->
+  <header class="header">
+    <div class="header-top">
+      <div class="header-logo" role="img" aria-label="Madeiras"></div>
+      <span class="header-brand">MADEIRAS</span>
+      <span class="header-date">Julio 2026 · Confidencial</span>
+    </div>
+    <h1>SISTEMA DE<br>ASISTENCIA<br>DE VENTAS</h1>
+    <p class="header-tagline">De 45 minutos de búsqueda manual a una cotización en segundos — para cada cliente, en cada visita.</p>
+  </header>
+
+
+  <!-- ══════════════════════════
+       EL PROBLEMA
+  ══════════════════════════ -->
+  <section class="section">
+    <div class="eyebrow">El problema</div>
+    <h2 class="section-title">El vendedor busca. El cliente espera.</h2>
+    <p class="section-intro">Cuando un cliente llega con interés en un mueble, el vendedor debe recorrer 8 o 9 plataformas por separado, buscar en cada una, comparar precios, calcular márgenes manualmente — todo mientras el cliente pierde el impulso de compra.</p>
+
+    <div class="split-wrap">
+      <div class="split-before">
+        <div class="split-label">HOY</div>
+        <ul class="split-steps">
+          <li>Abrir portal Coaster con usuario y contraseña</li>
+          <li>Buscar el producto. Anotar precio y existencias</li>
+          <li>Abrir portal Happy Homes. Buscar. Comparar</li>
+          <li>Repetir en Home Elegance, ChromeMart, Furnitures...</li>
+          <li>Comparar opciones de memoria o en papel</li>
+          <li>Calcular precio de venta manualmente: costo + margen</li>
+          <li>¿El cálculo está bien? ¿Se pasó algo por alto?</li>
+        </ul>
+        <div class="split-result">45 – 60 minutos por cliente. Para cuando terminas, el cliente ya no está.</div>
+      </div>
+
+      <div class="split-after">
+        <div class="split-label">CON LA SOLUCIÓN</div>
+        <ul class="split-steps">
+          <li>Abrir la herramienta — una sola pantalla</li>
+          <li>Ingresar lo que busca el cliente</li>
+          <li>Ver opciones de todos los proveedores al instante</li>
+          <li>Precio de venta ya calculado con el margen del negocio</li>
+          <li>Seleccionar, comparar y generar la cotización</li>
+        </ul>
+        <div class="split-result">2 – 3 minutos. El cliente recibe opciones mientras sigue en el piso.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       MÓDULO 1
+  ══════════════════════════ -->
+  <section class="section section--beige">
+    <div class="eyebrow">Módulo 1</div>
+    <h2 class="section-title">EXTRACCIÓN DE CATÁLOGOS</h2>
+    <p class="section-intro">Centralizar la información de todos los proveedores en una sola base de datos normalizada: tipo de mueble, color, material, dimensiones, precio de costo, disponibilidad, fotos y SKU.</p>
+
+    <div class="phases">
+
+      <div class="phase-card phase-card--active">
+        <span class="phase-badge phase-badge--active">Fase 1 · Inmediata</span>
+        <h3>Carga manual supervisada</h3>
+        <ul>
+          <li>Exportación de catálogos en Excel o CSV desde cada portal del proveedor</li>
+          <li>Para portales sin exportación: carga asistida y estructurada</li>
+          <li>Normalización al esquema unificado de Madeiras</li>
+          <li>Base de datos lista para consultar y cotizar desde el primer día</li>
+        </ul>
+      </div>
+
+      <div class="phase-card phase-card--next">
+        <span class="phase-badge phase-badge--next">Fase 2 · Siguiente iteración</span>
+        <h3>Sincronización automática</h3>
+        <ul>
+          <li>Extracción periódica (diaria o semanal) con herramientas de web scraping</li>
+          <li>Acceso automatizado a portales con las credenciales existentes de Madeiras</li>
+          <li>Precios e inventario siempre actualizados sin intervención manual</li>
+        </ul>
+        <p class="phase-note">El alcance técnico exacto se define en sesiones de reconocimiento con los portales reales — algunos pueden tener APIs o exportaciones no documentadas que simplifiquen esta fase.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       MÓDULO 2
+  ══════════════════════════ -->
+  <section class="section">
+    <div class="eyebrow">Módulo 2</div>
+    <h2 class="section-title">ASISTENTE DE VENTAS</h2>
+    <p class="section-intro">La capa de interacción para el vendedor. Se proponen dos opciones que comparten el mismo backend — base de datos unificada y motor de pricing con margen configurable.</p>
+
+    <div class="options-grid">
+
+      <div class="option-card">
+        <div class="option-card-head">
+          <span class="option-badge option-badge--a">Opción A</span>
+          <h3>Catálogo con filtros</h3>
+          <p class="desc">Interfaz web en tablet o PC. El vendedor filtra por tipo, color, material, rango de precio y proveedor, y ve resultados en tarjetas con foto y precio de venta ya calculado.</p>
+        </div>
+        <div class="option-card-body">
+          <div class="pc-label">Ventajas</div>
+          <ul class="pros">
+            <li>Rápido y estructurado para vendedores con experiencia</li>
+            <li>Control total sobre los criterios de búsqueda</li>
+            <li>Puede funcionar sin conexión a internet</li>
+            <li>Cotización imprimible o PDF desde la misma pantalla</li>
+          </ul>
+          <div class="pc-label">Limitaciones</div>
+          <ul class="cons">
+            <li>El vendedor necesita saber qué y cómo filtrar</li>
+            <li>Menos natural para descripciones vagas del cliente</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="option-card">
+        <div class="option-card-head">
+          <span class="option-badge option-badge--b">Opción B</span>
+          <h3>Asistente en WhatsApp</h3>
+          <p class="desc">El vendedor manda una nota de voz o foto con lo que busca el cliente. El sistema transcribe, interpreta con IA y responde con opciones, fotos y precios directamente en el chat.</p>
+        </div>
+        <div class="option-card-body">
+          <div class="pc-label">Ventajas</div>
+          <ul class="pros">
+            <li>Sin entrenamiento — el vendedor usa WhatsApp como siempre</li>
+            <li>Acepta descripciones naturales: "algo moderno en beige menos de $800"</li>
+            <li>Nota de voz → cotización en segundos: la experiencia más impactante</li>
+            <li>Consultas rápidas desde cualquier parte del piso de ventas</li>
+          </ul>
+          <div class="pc-label">Limitaciones</div>
+          <ul class="cons">
+            <li>Requiere conexión a internet</li>
+            <li>Respuesta en 5 – 15 segundos (latencia de IA)</li>
+            <li>Dependencia de plataformas externas</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="coexist">
+      <div class="coexist-icon">⇄</div>
+      <div>
+        <h4>Las dos opciones pueden coexistir</h4>
+        <p>Comparten la misma base de datos y motor de precios. La Opción A sirve para búsquedas estructuradas desde una tablet; la Opción B para consultas rápidas desde el celular en piso. Un vendedor puede usar las dos según el momento — no hay que elegir una sola.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       DEMO INTERACTIVO
+  ══════════════════════════ -->
+  <section class="section section--dark demo-section">
+    <div class="eyebrow">Demo interactivo</div>
+    <h2 class="section-title">ASÍ SE VERÍA EN ACCIÓN</h2>
+    <p class="section-intro">Dos demostraciones animadas de cómo trabajaría un vendedor de Madeiras con cada opción. Se reproducen solas al llegar aquí — o presiona play.</p>
+
+    <!-- SVG silhouettes compartidas -->
+    <svg style="display:none" aria-hidden="true">
+      <symbol id="sym-sofa" viewBox="0 0 120 70">
+        <g fill="none" stroke="#a86336" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="22" y="10" width="76" height="24" rx="8"/>
+          <rect x="14" y="30" width="92" height="18" rx="6"/>
+          <rect x="6" y="22" width="14" height="26" rx="6"/>
+          <rect x="100" y="22" width="14" height="26" rx="6"/>
+          <path d="M60 12 v20"/>
+          <path d="M22 48 v9 M98 48 v9"/>
+        </g>
+      </symbol>
+      <symbol id="sym-sectional" viewBox="0 0 120 70">
+        <g fill="none" stroke="#a86336" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="8" y="10" width="104" height="14" rx="6"/>
+          <rect x="8" y="24" width="66" height="20" rx="6"/>
+          <rect x="74" y="24" width="38" height="34" rx="6"/>
+          <path d="M16 44 v10 M62 44 v10 M80 58 v6 M106 58 v6"/>
+        </g>
+      </symbol>
+      <symbol id="sym-chair" viewBox="0 0 120 70">
+        <g fill="none" stroke="#a86336" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="36" y="8" width="48" height="30" rx="12"/>
+          <rect x="30" y="34" width="60" height="16" rx="7"/>
+          <rect x="22" y="24" width="14" height="26" rx="6"/>
+          <rect x="84" y="24" width="14" height="26" rx="6"/>
+          <path d="M34 50 v9 M86 50 v9"/>
+        </g>
+      </symbol>
+    </svg>
+
+    <div class="demo-grid">
+
+      <!-- ── DEMO A · Catálogo con filtros ── -->
+      <div class="dplayer" id="demo-a">
+        <div class="dp-top">
+          <span class="dp-title">OPCIÓN A · CATÁLOGO CON FILTROS</span>
+          <span class="dp-chip">DEMO</span>
+        </div>
+        <div class="dp-screen">
+          <div class="da-app" aria-hidden="true">
+            <div class="da-top">
+              <span class="da-top-brand">MADEIRAS</span>
+              <span class="da-top-sub">Catálogo unificado</span>
+              <span class="da-margin">Margen 65% aplicado</span>
+            </div>
+            <div class="da-body">
+              <aside class="da-filters">
+                <div>
+                  <div class="da-flabel">Tipo</div>
+                  <div class="da-chips">
+                    <span class="da-chip" data-v="sofa">Sofá</span>
+                    <span class="da-chip">Seccional</span>
+                    <span class="da-chip">Mesa</span>
+                    <span class="da-chip">Silla</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="da-flabel">Color</div>
+                  <div class="da-swatches">
+                    <span class="da-swatch" data-v="gris" style="background:#8d8d8d"></span>
+                    <span class="da-swatch" style="background:#cbb79a"></span>
+                    <span class="da-swatch" style="background:#46608c"></span>
+                    <span class="da-swatch" style="background:#6b4a32"></span>
+                  </div>
+                </div>
+                <div>
+                  <div class="da-flabel">Precio máx.</div>
+                  <div class="da-slider"><span class="da-slider-fill"></span><span class="da-slider-thumb"></span></div>
+                  <div class="da-slider-val"><span class="v0">Sin límite</span><span class="v1">$15,000</span></div>
+                </div>
+                <div>
+                  <div class="da-flabel">Proveedor</div>
+                  <div class="da-provs">
+                    <span>Coaster</span>
+                    <span>Happy Homes</span>
+                    <span>Home Elegance</span>
+                    <span>ChromeMart</span>
+                    <span>Furnitures</span>
+                  </div>
+                </div>
+              </aside>
+              <div class="da-main">
+                <div class="da-count">6 resultados · 4 proveedores · sofá · gris · hasta $15,000</div>
+                <div class="da-empty">
+                  <svg viewBox="0 0 120 70"><use href="#sym-sofa"/></svg>
+                  Usa los filtros para buscar<br>en los 9 catálogos a la vez
+                </div>
+                <div class="da-results">
+                  <div class="da-card">
+                    <div class="da-photo"><svg viewBox="0 0 120 70"><use href="#sym-sofa"/></svg></div>
+                    <div class="da-card-b">
+                      <div class="da-name">Sofá Berlín</div>
+                      <div class="da-prov">Coaster</div>
+                      <div class="da-row"><span class="da-price">$12,450</span><span class="da-stock">✓ Disponible</span></div>
+                      <div class="da-add">+ Cotizar</div>
+                    </div>
+                  </div>
+                  <div class="da-card">
+                    <div class="da-photo"><svg viewBox="0 0 120 70"><use href="#sym-sectional"/></svg></div>
+                    <div class="da-card-b">
+                      <div class="da-name">Sofá Esquinero Aria</div>
+                      <div class="da-prov">Happy Homes</div>
+                      <div class="da-row"><span class="da-price">$14,200</span><span class="da-stock">✓ Disponible</span></div>
+                      <div class="da-add">+ Cotizar</div>
+                    </div>
+                  </div>
+                  <div class="da-card">
+                    <div class="da-photo"><svg viewBox="0 0 120 70"><use href="#sym-sofa"/></svg></div>
+                    <div class="da-card-b">
+                      <div class="da-name">Sofá Módena</div>
+                      <div class="da-prov">Home Elegance</div>
+                      <div class="da-row"><span class="da-price">$11,900</span><span class="da-stock da-stock--warn">3 en stock</span></div>
+                      <div class="da-add">+ Cotizar</div>
+                    </div>
+                  </div>
+                  <div class="da-card">
+                    <div class="da-photo"><svg viewBox="0 0 120 70"><use href="#sym-chair"/></svg></div>
+                    <div class="da-card-b">
+                      <div class="da-name">Sofá Nórdico</div>
+                      <div class="da-prov">Furnitures</div>
+                      <div class="da-row"><span class="da-price">$9,850</span><span class="da-stock">✓ Disponible</span></div>
+                      <div class="da-add">+ Cotizar</div>
+                    </div>
+                  </div>
+                  <div class="da-card">
+                    <div class="da-photo"><svg viewBox="0 0 120 70"><use href="#sym-sectional"/></svg></div>
+                    <div class="da-card-b">
+                      <div class="da-name">Sofá Cloud XL</div>
+                      <div class="da-prov">Coaster</div>
+                      <div class="da-row"><span class="da-price">$14,900</span><span class="da-stock">✓ Disponible</span></div>
+                      <div class="da-add">+ Cotizar</div>
+                    </div>
+                  </div>
+                  <div class="da-card">
+                    <div class="da-photo"><svg viewBox="0 0 120 70"><use href="#sym-sofa"/></svg></div>
+                    <div class="da-card-b">
+                      <div class="da-name">Sofá Eco Compacto</div>
+                      <div class="da-prov">ChromeMart</div>
+                      <div class="da-row"><span class="da-price">$8,750</span><span class="da-stock da-stock--warn">Bajo pedido</span></div>
+                      <div class="da-add">+ Cotizar</div>
+                    </div>
+                  </div>
+                </div>
+                <aside class="da-quote">
+                  <div class="da-q-title">COTIZACIÓN</div>
+                  <div class="da-q-item" data-i="1"><b>Sofá Berlín</b><span>Coaster · $12,450</span></div>
+                  <div class="da-q-item" data-i="2"><b>Sofá Cloud XL</b><span>Coaster · $14,900</span></div>
+                  <div class="da-q-total"><span class="da-q-count">0 artículos</span><b class="da-q-sum">$0</b></div>
+                  <div class="da-q-btn">Generar cotización</div>
+                  <div class="da-q-done">
+                    <div class="da-q-check">✓</div>
+                    <b>Cotización #0041 lista</b>
+                    <span>PDF generado — para imprimir o mandar por WhatsApp al cliente</span>
+                  </div>
+                </aside>
+              </div>
+            </div>
+            <div class="demo-cursor"></div>
+          </div>
+          <button class="dp-overlay" type="button" aria-label="Reproducir demo del catálogo con filtros">
+            <span class="dp-play-btn"></span>
+            <span>Ver demo · 24 s</span>
+          </button>
+        </div>
+        <div class="dp-caption">
+          <span class="dp-step">▶</span>
+          <span class="dp-caption-text">Así arma una cotización un vendedor con el catálogo unificado.</span>
+        </div>
+        <div class="dp-bar">
+          <button class="dp-btn" type="button" aria-label="Reproducir o repetir demo">▶</button>
+          <div class="dp-progress"><div class="dp-progress-fill"></div></div>
+          <span class="dp-time">0:00 / 0:24</span>
+        </div>
+      </div>
+
+      <!-- ── DEMO B · Asistente en WhatsApp ── -->
+      <div class="dplayer" id="demo-b">
+        <div class="dp-top">
+          <span class="dp-title">OPCIÓN B · ASISTENTE EN WHATSAPP</span>
+          <span class="dp-chip">DEMO</span>
+        </div>
+        <div class="dp-screen">
+          <div class="wa-stage" aria-hidden="true">
+            <div class="wa-phone">
+              <div class="wa-screen">
+                <div class="wa-head">
+                  <div class="wa-avatar">M</div>
+                  <div>
+                    <div class="wa-head-name">Asistente Madeiras</div>
+                    <div class="wa-head-status">en línea</div>
+                  </div>
+                </div>
+                <div class="wa-chat">
+                  <span class="wa-date">Hoy</span>
+                  <div class="wa-msg wa-sent wa-m1">
+                    <div class="wa-voice">
+                      <span class="wa-voice-play"></span>
+                      <span class="wa-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                      <span class="wa-vtime">0:07</span>
+                    </div>
+                    <span class="wa-meta">10:42 <span class="wa-ticks">✓✓</span></span>
+                  </div>
+                  <div class="wa-msg wa-recv wa-m2">
+                    <span class="wa-trans"><b>ESCUCHÉ:</b>"Sofá seccional gris, en tela, presupuesto máximo $15,000."</span>
+                    <span class="wa-meta">10:42</span>
+                  </div>
+                  <div class="wa-msg wa-recv wa-typing wa-t1"><i></i><i></i><i></i></div>
+                  <div class="wa-msg wa-recv wa-m3">
+                    Encontré <b>3 opciones</b> disponibles hoy:
+                    <div class="wa-prods">
+                      <div class="wa-prod">
+                        <div class="wa-prod-ph"><svg viewBox="0 0 120 70"><use href="#sym-sectional"/></svg></div>
+                        <div><b>Seccional Aria</b><div class="wa-prod-prov">Happy Homes</div><div class="wa-prod-row"><span class="wa-prod-price">$14,200</span><span class="wa-prod-st">✓ Disponible</span></div></div>
+                      </div>
+                      <div class="wa-prod">
+                        <div class="wa-prod-ph"><svg viewBox="0 0 120 70"><use href="#sym-sectional"/></svg></div>
+                        <div><b>Seccional Cloud</b><div class="wa-prod-prov">Coaster</div><div class="wa-prod-row"><span class="wa-prod-price">$14,900</span><span class="wa-prod-st">✓ Disponible</span></div></div>
+                      </div>
+                      <div class="wa-prod">
+                        <div class="wa-prod-ph"><svg viewBox="0 0 120 70"><use href="#sym-sofa"/></svg></div>
+                        <div><b>Módena L</b><div class="wa-prod-prov">Home Elegance</div><div class="wa-prod-row"><span class="wa-prod-price">$11,900</span><span class="wa-prod-st">✓ 3 en stock</span></div></div>
+                      </div>
+                    </div>
+                    <span class="wa-meta">10:43</span>
+                  </div>
+                  <div class="wa-msg wa-sent wa-m4">Perfecto 👌 ¿el Aria lo tienes en azul?<span class="wa-meta">10:44 <span class="wa-ticks">✓✓</span></span></div>
+                  <div class="wa-msg wa-recv wa-typing wa-t2"><i></i><i></i><i></i></div>
+                  <div class="wa-msg wa-recv wa-m5">Sí — el <b>Seccional Aria</b> viene en azul marino. Mismo precio: <b>$14,200</b>, entrega en 5 días. ¿Te armo la cotización? 📄<span class="wa-meta">10:44</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="dp-overlay" type="button" aria-label="Reproducir demo del asistente en WhatsApp">
+            <span class="dp-play-btn"></span>
+            <span>Ver demo · 25 s</span>
+          </button>
+        </div>
+        <div class="dp-caption">
+          <span class="dp-step">▶</span>
+          <span class="dp-caption-text">De nota de voz a opciones con precio — sin salir de WhatsApp.</span>
+        </div>
+        <div class="dp-bar">
+          <button class="dp-btn" type="button" aria-label="Reproducir o repetir demo">▶</button>
+          <div class="dp-progress"><div class="dp-progress-fill"></div></div>
+          <span class="dp-time">0:00 / 0:25</span>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="demo-note">Demostración ilustrativa con productos y precios de ejemplo. La interfaz final se afina junto con el equipo de Madeiras.</p>
+  </section>
+
+
+  <!-- ══════════════════════════
+       ROADMAP
+  ══════════════════════════ -->
+  <section class="section section--dark">
+    <div class="eyebrow">Roadmap</div>
+    <h2 class="section-title">TRES FASES DE CRECIMIENTO</h2>
+    <p class="section-intro">Empezar a generar valor desde la primera semana, y crecer de manera controlada según los resultados.</p>
+
+    <div class="roadmap">
+
+      <div class="rm-phase">
+        <div class="rm-dot rm-dot--active">1</div>
+        <div class="rm-eyebrow">MVP · Inmediato</div>
+        <h3>Catálogo Unificado Interno</h3>
+        <ul>
+          <li>Carga inicial de catálogos</li>
+          <li>Base de datos normalizada</li>
+          <li>Interfaz web con filtros</li>
+          <li>Motor de pricing con margen configurable</li>
+          <li>Cotización en pantalla</li>
+        </ul>
+      </div>
+
+      <div class="rm-phase">
+        <div class="rm-dot rm-dot--next">2</div>
+        <div class="rm-eyebrow">Siguiente iteración</div>
+        <h3>Automatización + Chat</h3>
+        <ul>
+          <li>Sincronización automática de catálogos</li>
+          <li>App accesible desde cualquier dispositivo</li>
+          <li>Asistente en WhatsApp o Telegram</li>
+          <li>Cotización PDF compartible</li>
+        </ul>
+      </div>
+
+      <div class="rm-phase">
+        <div class="rm-dot rm-dot--future">3</div>
+        <div class="rm-eyebrow">Visión a mediano plazo</div>
+        <h3>CRM + Analytics</h3>
+        <ul>
+          <li>Registro de clientes y cotizaciones</li>
+          <li>Seguimiento de conversiones</li>
+          <li>Dashboard para el dueño</li>
+          <li>Análisis de márgenes y proveedores</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════
+       PREGUNTAS PENDIENTES
+  ══════════════════════════ -->
+  <section class="section section--beige">
+    <div class="eyebrow">Próximos pasos</div>
+    <h2 class="section-title">PREGUNTAS A RESOLVER</h2>
+    <p class="section-intro">Para arrancar la Fase 1, necesitamos responder estas preguntas en una sesión de reconocimiento con el equipo de Madeiras.</p>
+
+    <ul class="pending-list">
+      <li>
+        <div class="pending-ring"></div>
+        ¿Cuáles proveedores permiten exportar su catálogo en Excel o CSV, y con qué frecuencia se actualiza el inventario en sus portales?
+      </li>
+      <li>
+        <div class="pending-ring"></div>
+        ¿El margen del 65% aplica igual para todos los productos, o varía por categoría o proveedor?
+      </li>
+      <li>
+        <div class="pending-ring"></div>
+        ¿Cuántos vendedores usarán el sistema de forma simultánea?
+      </li>
+      <li>
+        <div class="pending-ring"></div>
+        ¿El dispositivo principal en el piso de ventas es tablet, celular o PC?
+      </li>
+      <li>
+        <div class="pending-ring"></div>
+        ¿Hay preferencia entre Opción A, Opción B, o ambas para incluir en la Fase 2?
+      </li>
+    </ul>
+  </section>
+
+
+  <!-- ══════════════════════════
+       FOOTER
+  ══════════════════════════ -->
+  <footer class="footer">
+    <span class="footer-brand">MADEIRAS · PROPUESTA TÉCNICA</span>
+    <span class="footer-meta">Confidencial · Julio 2026</span>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function q(root, sel) { return root.querySelector(sel); }
+
+    function cursorTo(app, sel) {
+      var cur = q(app, '.demo-cursor');
+      var t = q(app, sel);
+      if (!t || t.offsetParent === null) return;
+      var r = t.getBoundingClientRect();
+      var s = app.getBoundingClientRect();
+      cur.style.left = (r.left - s.left + r.width / 2) + 'px';
+      cur.style.top = (r.top - s.top + r.height / 2) + 'px';
+      cur.classList.add('visible');
+    }
+
+    function cursorClick(app) {
+      var cur = q(app, '.demo-cursor');
+      cur.classList.remove('click');
+      void cur.offsetWidth;
+      cur.classList.add('click');
+    }
+
+    function setupDemo(cfg) {
+      var root = document.getElementById(cfg.id);
+      if (!root) return;
+      var fill = q(root, '.dp-progress-fill');
+      var cap = q(root, '.dp-caption-text');
+      var stepEl = q(root, '.dp-step');
+      var timeEl = q(root, '.dp-time');
+      var btn = q(root, '.dp-btn');
+      var overlay = q(root, '.dp-overlay');
+      var timers = [], raf = 0, playing = false, played = false;
+
+      var ci = 0;
+      cfg.steps.forEach(function (s) { if (s.caption) { ci++; s._n = ci; } });
+      var capTotal = ci;
+
+      function fmt(s) { return '0:' + String(Math.floor(s)).padStart(2, '0'); }
+
+      function clearAll() {
+        timers.forEach(clearTimeout);
+        timers = [];
+        cancelAnimationFrame(raf);
+      }
+
+      function finish() {
+        playing = false;
+        played = true;
+        fill.style.width = '100%';
+        timeEl.textContent = fmt(cfg.dur) + ' / ' + fmt(cfg.dur);
+      }
+
+      function applyStep(s) {
+        if (s.caption) {
+          cap.textContent = s.caption;
+          stepEl.textContent = s._n + '/' + capTotal;
+        }
+        if (s.run) s.run(root);
+      }
+
+      function play() {
+        clearAll();
+        cfg.reset(root);
+        playing = true;
+        overlay.classList.add('hidden');
+        btn.textContent = '↻';
+        cfg.steps.forEach(function (s) {
+          timers.push(setTimeout(function () { applyStep(s); }, s.at * 1000));
+        });
+        timers.push(setTimeout(finish, cfg.dur * 1000));
+        var t0 = performance.now();
+        (function tick() {
+          var e = Math.min((performance.now() - t0) / 1000, cfg.dur);
+          fill.style.width = (e / cfg.dur * 100) + '%';
+          timeEl.textContent = fmt(e) + ' / ' + fmt(cfg.dur);
+          if (e < cfg.dur && playing) raf = requestAnimationFrame(tick);
+        })();
+      }
+
+      function jumpEnd() {
+        clearAll();
+        cfg.reset(root);
+        cfg.steps.forEach(applyStep);
+        overlay.classList.add('hidden');
+        btn.textContent = '↻';
+        finish();
+      }
+
+      function start() { reduced ? jumpEnd() : play(); }
+
+      btn.addEventListener('click', start);
+      overlay.addEventListener('click', start);
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting && !playing && !played) {
+              io.disconnect();
+              start();
+            }
+          });
+        }, { threshold: 0.35 });
+        io.observe(root);
+      }
+    }
+
+    /* ── Demo A · catálogo con filtros ── */
+    function appA(root) { return q(root, '.da-app'); }
+
+    function setQuote(root, n) {
+      var app = appA(root);
+      q(app, '.da-q-count').textContent = n === 1 ? '1 artículo' : n + ' artículos';
+      q(app, '.da-q-sum').textContent = n === 1 ? '$12,450' : '$27,350';
+    }
+
+    function resetA(root) {
+      var app = appA(root);
+      app.classList.remove('price-set', 'has-results', 'quote-open', 'quote-done');
+      app.querySelectorAll('.is-on').forEach(function (el) { el.classList.remove('is-on'); });
+      app.querySelectorAll('.in-quote').forEach(function (el) { el.classList.remove('in-quote'); });
+      app.querySelectorAll('.da-q-item').forEach(function (el) { el.classList.remove('show'); });
+      q(app, '.da-q-count').textContent = '0 artículos';
+      q(app, '.da-q-sum').textContent = '$0';
+      var cur = q(app, '.demo-cursor');
+      cur.classList.remove('visible', 'click');
+      cur.style.transition = 'none';
+      cur.style.left = '55%';
+      cur.style.top = '88%';
+      void cur.offsetWidth;
+      cur.style.transition = '';
+    }
+
+    setupDemo({
+      id: 'demo-a',
+      dur: 24,
+      reset: resetA,
+      steps: [
+        { at: 0.3, caption: 'El cliente pide: "un sofá gris, moderno — máximo quince mil pesos".',
+          run: function (r) { q(appA(r), '.demo-cursor').classList.add('visible'); } },
+        { at: 2.4, caption: 'El vendedor marca tipo, color y presupuesto. Tres clics.',
+          run: function (r) { cursorTo(appA(r), '[data-v="sofa"]'); } },
+        { at: 3.3, run: function (r) { cursorClick(appA(r)); q(appA(r), '[data-v="sofa"]').classList.add('is-on'); } },
+        { at: 4.2, run: function (r) { cursorTo(appA(r), '[data-v="gris"]'); } },
+        { at: 5.0, run: function (r) { cursorClick(appA(r)); q(appA(r), '[data-v="gris"]').classList.add('is-on'); } },
+        { at: 6.0, run: function (r) { cursorTo(appA(r), '.da-slider-thumb'); } },
+        { at: 6.8, run: function (r) { cursorClick(appA(r)); appA(r).classList.add('price-set'); } },
+        { at: 7.9, run: function (r) { cursorTo(appA(r), '.da-slider-thumb'); } },
+        { at: 8.8, caption: 'Resultados de 4 proveedores en una pantalla — con el precio de venta ya calculado con el margen de Madeiras.',
+          run: function (r) { appA(r).classList.add('has-results'); } },
+        { at: 13.0, caption: 'Agrega las opciones que le gustan al cliente…',
+          run: function (r) { cursorTo(appA(r), '.da-card:nth-child(1) .da-add'); } },
+        { at: 13.9, run: function (r) {
+            var app = appA(r);
+            cursorClick(app);
+            q(app, '.da-card:nth-child(1)').classList.add('in-quote');
+            app.classList.add('quote-open');
+            q(app, '.da-q-item[data-i="1"]').classList.add('show');
+            setQuote(r, 1);
+          } },
+        { at: 15.6, run: function (r) { cursorTo(appA(r), '.da-card:nth-child(5) .da-add'); } },
+        { at: 16.4, run: function (r) {
+            var app = appA(r);
+            cursorClick(app);
+            q(app, '.da-card:nth-child(5)').classList.add('in-quote');
+            q(app, '.da-q-item[data-i="2"]').classList.add('show');
+            setQuote(r, 2);
+          } },
+        { at: 18.3, caption: '…y genera la cotización ahí mismo.',
+          run: function (r) { cursorTo(appA(r), '.da-q-btn'); } },
+        { at: 19.3, run: function (r) { cursorClick(appA(r)); appA(r).classList.add('quote-done'); } },
+        { at: 20.6, caption: 'Listo: cotización en 2–3 minutos. Hoy, este mismo proceso toma 45.' }
+      ]
+    });
+
+    /* ── Demo B · asistente en WhatsApp ── */
+    function resetB(root) {
+      root.querySelectorAll('.wa-msg').forEach(function (m) { m.classList.remove('show', 'playing'); });
+    }
+
+    setupDemo({
+      id: 'demo-b',
+      dur: 25,
+      reset: resetB,
+      steps: [
+        { at: 0.3, caption: 'El vendedor está en el piso con el cliente. Abre WhatsApp — nada nuevo que aprender.' },
+        { at: 2.4, caption: 'Manda una nota de voz: "busco un seccional gris, en tela, que no pase de quince mil…"',
+          run: function (r) { var m = q(r, '.wa-m1'); m.classList.add('show', 'playing'); } },
+        { at: 5.8, caption: 'El sistema transcribe la voz y entiende exactamente qué busca.',
+          run: function (r) { q(r, '.wa-m1').classList.remove('playing'); q(r, '.wa-m2').classList.add('show'); } },
+        { at: 8.8, caption: 'La IA consulta los catálogos de los 9 proveedores al mismo tiempo.',
+          run: function (r) { q(r, '.wa-t1').classList.add('show'); } },
+        { at: 11.4, caption: 'Y responde en segundos: opciones disponibles, con foto y precio de venta final.',
+          run: function (r) { q(r, '.wa-t1').classList.remove('show'); q(r, '.wa-m3').classList.add('show'); } },
+        { at: 17.0, caption: 'El cliente duda del color. El vendedor pregunta como en cualquier chat.',
+          run: function (r) { q(r, '.wa-m4').classList.add('show'); } },
+        { at: 19.0, run: function (r) { q(r, '.wa-t2').classList.add('show'); } },
+        { at: 21.0, caption: 'Respuesta al instante — sin abrir un solo portal de proveedor.',
+          run: function (r) { q(r, '.wa-t2').classList.remove('show'); q(r, '.wa-m5').classList.add('show'); } }
+      ]
+    });
+  })();
+  </script>
+
+</body>
+</html>
