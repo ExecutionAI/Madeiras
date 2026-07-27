@@ -1247,8 +1247,20 @@
       .options-grid  { grid-template-columns: 1fr; }
       .roadmap       { grid-template-columns: 1fr; gap: 2rem; }
       .roadmap::before { display: none; }
-      .rm-phase      { align-items: flex-start; text-align: left; flex-direction: row; gap: 1rem; }
-      .rm-dot        { flex-shrink: 0; }
+      .rm-phase      {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        grid-template-rows: auto auto auto;
+        column-gap: 1rem;
+        row-gap: 0.25rem;
+        align-items: start;
+        text-align: left;
+        padding: 0;
+      }
+      .rm-dot        { grid-column: 1; grid-row: 1 / 4; align-self: start; margin-bottom: 0; }
+      .rm-eyebrow    { grid-column: 2; grid-row: 1; }
+      .rm-phase h3   { grid-column: 2; grid-row: 2; }
+      .rm-phase ul   { grid-column: 2; grid-row: 3; }
     }
   </style>
 </head>
